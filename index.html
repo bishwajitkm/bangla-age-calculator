@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#16a34a">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi4Kas4Ka-4Kaw4Ka44KeN4Kac4Ka44Ka-4Kao4KeN4Kaf4KeA4Kaw4KeB4Kao4Ka-4Kaw4Ka-IOCmuOCnjeCmnOCmvuCmqiIsInNob3J0X25hbWUiOiLgpKrgp7jgpLDgpLjgp4fgpJzgpLjgpr7gpKjgp4fgpJ3gpLgifQ==">
+<title>বয়স ক্যালকুলেটর</title>
+<style>
+ body{font-family:system-ui;background:#d1fae5;margin:0;display:flex;justify-content:center;min-height:100vh}
+ .app{width:100%;max-width:400px;background:#ecfdf5;min-height:100vh;padding:20px;box-sizing:border-box}
+ .header{background:#bbf7d0;padding:15px;border-radius:20px;text-align:center;font-size:22px;font-weight:800;color:#14532d}
+ input,button{width:100%;padding:14px;margin-top:12px;border-radius:14px;border:2px solid #86efac;font-size:16px;box-sizing:border-box}
+ button{background:#16a34a;color:white;font-weight:700;border:none}
+ #result{margin-top:20px;background:white;padding:20px;border-radius:16px;display:none;text-align:center}
+</style>
+</head>
+<body>
+<div class="app">
+ <div class="header">📅 বয়স ক্যালকুলেটর</div>
+ <p style="text-align:center;color:#555">জন্ম তারিখ দিন, সঠিক বয়স জেনে নিন</p>
+ <input type="date" id="dob">
+ <button onclick="calc()">হিসাব করুন</button>
+ <div id="result"></div>
+</div>
+<script>
+function calc(){
+ const v=document.getElementById('dob').value;
+ if(!v)return alert('জন্মতারিখ দিন');
+ const dob=new Date(v), now=new Date();
+ let y=now.getFullYear()-dob.getFullYear(), m=now.getMonth()-dob.getMonth(), d=now.getDate()-dob.getDate();
+ if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
+ if(m<0){y--;m+=12;}
+ const total=Math.floor((now-dob)/86400000);
+ document.getElementById('result').style.display='block';
+ document.getElementById('result').innerHTML=`<h2 style="margin:0;color:#14532d">${y} বছর • ${m} মাস • ${d} দিন</h2><p>মোট ${total} দিন বেঁচে আছো 🎉</p>`;
+}
+</script>
+</body>
+</html>
